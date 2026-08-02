@@ -1,0 +1,91 @@
+import { useState } from 'react';
+
+const EMAIL = /.+@.+\..+/;
+
+/**
+ * "Be first to lend smarter" — the single conversion point on the page.
+ * Both "Get early access" and "Get it at launch — $1" scroll here and focus
+ * the input, so `inputRef` is owned by App.
+ */
+export default function NotifyCTA({ inputRef }) {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | error | sending | done
+  const [message, setMessage] = useState('');
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (status === 'sending') return;
+
+    if (!EMAIL.test(email.trim())) {
+      setStatus('error');
+      setMessage('Please enter a valid email address.');
+      inputRef.current?.focus();
+      return;
+    }
+
+    setStatus('sending');
+    setMessage('Adding you to the list…');
+
+    // TODO: POST to the real waitlist endpoint before launch.
+    window.setTimeout(() => {
+      setStatus('done');
+      setMessage("You're on the list — we'll be in touch at launch. 🎉");
+      setEmail('');
+    }, 600);
+  };
+
+  const buttonLabel =
+    status === 'sending' ? 'Adding…' : status === 'done' ? "You're in ✓" : 'Notify me';
+
+  return (
+    <section className="cta shell shell--narrow" id="notify" aria-labelledby="notify-heading">
+      <div className="cta__panel">
+        <div className="cta__blob-a" aria-hidden />
+        <div className="cta__blob-b" aria-hidden />
+        <div className="cta__inner">
+          <h2 id="notify-heading">Be first to lend smarter</h2>
+          <p>
+            LendTrack launches soon. Drop your email and we'll ping you the moment it's live on the
+            App Store and Google Play.
+          </p>
+
+          <form className="cta__form" onSubmit={submit} noValidate>
+            <label htmlFor="notify-email" className="sr-only" style={{ display: 'none' }}>
+              Email address
+            </label>
+            <input
+              id="notify-email"
+              ref={inputRef}
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              placeholder="you@example.com"
+              value={email}
+              aria-invalid={status === 'error'}
+              aria-describedby="notify-msg"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (status !== 'idle') {
+                  setStatus('idle');
+                  setMessage('');
+                }
+              }}
+            />
+            <button type="submit" className="btn btn--ink" disabled={status === 'sending'}>
+              {buttonLabel}
+            </button>
+          </form>
+
+          <p
+            id="notify-msg"
+            className={`cta__msg${status === 'error' ? ' cta__msg--error' : ''}`}
+            role="status"
+            aria-live="polite"
+          >
+            {message}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
