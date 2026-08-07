@@ -9,6 +9,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main] # build-only validation; the deploy job is gated off below
   workflow_dispatch: # allows a manual re-run from the Actions tab
 
 permissions:
@@ -16,9 +18,10 @@ permissions:
   pages: write
   id-token: write
 
-# never let two deploys race; the newest push wins
+# never let two deploys race; the newest push wins.
+# keyed by ref so PR builds don't cancel the live deploy (or each other)
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -35,13 +38,17 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # packaging the artifact is only useful for a real deploy
       - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: dist
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request' # PRs validate the build only
     runs-on: ubuntu-latest
     environment:
       name: github-pages
