@@ -29,8 +29,7 @@ We do not sell your data, and we do not use it for advertising.
 ## Where your data is stored
 
 Your account and lending records are stored using Google Firebase
-(Authentication and Cloud Firestore). Data is protected by security rules so
-that only your signed-in account can read or write your records. See Google's
+(Authentication and Cloud Firestore). See Google's
 privacy policy at https://policies.google.com/privacy for how Google processes
 data on our behalf.
 
