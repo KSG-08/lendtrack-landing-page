@@ -1372,77 +1372,64 @@ input {
   color: var(--text-muted-dark);
 }
 
-/* --------------------------------------------------------------- modal --- */
+/* -------------------------------------------------- legal pages (/legal/) -- */
 
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 40px 20px;
-  background: rgba(11, 21, 18, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  overflow-y: auto;
-  animation: fadeUp 0.2s ease both;
+.legal {
+  padding: 40px 0 72px;
 }
-.modal__panel {
-  width: 100%;
-  max-width: 720px;
-  background: #fff;
+.legal__panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 24px;
-  box-shadow: var(--sh-modal);
-  overflow: hidden;
-  margin: auto;
+  box-shadow: var(--sh-card-sm);
+  padding: 36px 40px 44px;
+  max-width: 760px;
+  margin: 0 auto;
 }
-.modal__head {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 24px 30px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
-.modal__head .eyebrow {
+.legal__panel .eyebrow {
   font-size: 11px;
   letter-spacing: 1px;
 }
-.modal__head h2 {
-  font-size: 22px;
+.legal__title {
+  font-size: 30px;
   font-weight: 800;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.8px;
+  color: var(--ink);
+  margin: 6px 0 22px;
 }
-.modal__close {
-  flex: none;
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
+.legal__contact {
+  margin-top: 30px;
+  padding: 16px 18px;
   background: var(--bg);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--text-2);
-  transition: background 0.15s ease;
 }
-.modal__close:hover {
-  background: var(--border);
+.legal__contact a {
+  font-weight: 700;
 }
-.modal__body {
-  padding: 30px 34px 40px;
+.legal__more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  max-width: 760px;
+  margin: 26px auto 0;
+  padding: 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.legal__footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0 36px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 /* rendered markdown */
 .md h1 {
-  display: none; /* the doc title is already in the modal header */
+  display: none; /* the doc title is already rendered by the page header */
 }
 .md h2 {
   font-size: 17px;
@@ -1496,17 +1483,39 @@ input {
   color: var(--ink);
   font-weight: 700;
 }
-.modal__contact {
-  margin-top: 26px;
-  padding: 16px 18px;
-  background: var(--bg);
-  border-radius: 14px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-2);
+/* numbered steps (e.g. the account-deletion walkthrough) */
+.md ol.md-steps {
+  list-style: none;
+  counter-reset: md-step;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
 }
-.modal__contact a {
-  font-weight: 700;
+.md ol.md-steps li {
+  counter-increment: md-step;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+  font-weight: 500;
+  padding-left: 38px;
+  position: relative;
+}
+.md ol.md-steps li::before {
+  content: counter(md-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--brand-light), var(--brand));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ==========================================================================
@@ -1610,18 +1619,15 @@ input {
   .price-card {
     padding: 34px 26px;
   }
-  .modal {
-    padding: 0;
+  .legal {
+    padding: 24px 0 56px;
   }
-  .modal__panel {
-    border-radius: 0;
-    min-height: 100%;
+  .legal__panel {
+    padding: 28px 24px 34px;
+    border-radius: 20px;
   }
-  .modal__head {
-    padding: 20px 22px;
-  }
-  .modal__body {
-    padding: 24px 22px 40px;
+  .legal__title {
+    font-size: 25px;
   }
   .footer__bottom {
     justify-content: flex-start;

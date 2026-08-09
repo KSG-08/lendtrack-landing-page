@@ -1,11 +1,7 @@
-import { useState } from 'react';
 import { Features, Footer, Hero, Nav, Pricing, Screens, TrustStrip } from './components/sections.jsx';
 import LaunchStatus from './components/LaunchStatus.jsx';
-import LegalModal from './components/LegalModal.jsx';
 
 export default function App() {
-  const [legalDoc, setLegalDoc] = useState(null);
-
   return (
     <div className="page" id="top">
       <a className="skip-link" href="#features">
@@ -23,9 +19,7 @@ export default function App() {
         <LaunchStatus />
       </main>
 
-      <Footer onOpenLegal={setLegalDoc} />
-
-      <LegalModal doc={legalDoc} onClose={() => setLegalDoc(null)} />
+      <Footer />
     </div>
   );
 }

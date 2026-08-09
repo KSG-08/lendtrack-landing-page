@@ -249,7 +249,7 @@ export function Pricing() {
 
 /* --------------------------------------------------------------- footer -- */
 
-export function Footer({ onOpenLegal }) {
+export function Footer() {
   return (
     <footer className="footer">
       <div className="shell footer__inner">
@@ -277,12 +277,9 @@ export function Footer({ onOpenLegal }) {
           <div>
             <h2>Legal</h2>
             <div className="footer__list">
-              <button type="button" onClick={() => onOpenLegal('privacy')}>
-                Privacy Policy
-              </button>
-              <button type="button" onClick={() => onOpenLegal('terms')}>
-                Terms of Service
-              </button>
+              <a href="/legal/privacy/">Privacy Policy</a>
+              <a href="/legal/terms/">Terms of Service</a>
+              <a href="/legal/delete-account/">Delete Your Account</a>
             </div>
           </div>
 
