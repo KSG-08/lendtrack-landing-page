@@ -1,7 +1,8 @@
 /**
  * Tiny renderer for the subset of Markdown used by the legal documents in
- * docs/legal/ (headings, paragraphs, bullet lists, bold, links). The docs stay
- * the single source of truth — they are imported raw and rendered here.
+ * docs/legal/ (headings, paragraphs, bullet and numbered lists, bold, links).
+ * The docs stay the single source of truth — they are imported raw and
+ * rendered here.
  */
 
 const LINKS = /(https?:\/\/[^\s<>()]+[^\s<>().,]|[\w.+-]+@[\w-]+\.[\w.-]+)/g;
@@ -55,9 +56,17 @@ function parse(md) {
   };
   const flushList = () => {
     if (list) {
-      blocks.push({ type: 'ul', items: list });
+      blocks.push({ type: list.type, items: list.items });
       list = null;
     }
+  };
+
+  /** Start (or continue) a list of the given type, closing any other kind. */
+  const pushItem = (type, text) => {
+    flushParagraph();
+    if (list && list.type !== type) flushList();
+    list = list || { type, items: [] };
+    list.items.push(text);
   };
 
   for (const raw of md.split('\n')) {
@@ -80,15 +89,21 @@ function parse(md) {
 
     const bullet = /^[-*]\s+(.*)$/.exec(line);
     if (bullet) {
-      flushParagraph();
-      list = list || [];
-      list.push(bullet[1]);
+      pushItem('ul', bullet[1]);
       continue;
     }
 
-    // continuation of the previous bullet (hard-wrapped source)
+    // "1. " / "1) " numbered steps. The trailing \s+ keeps version-like text
+    // ("1.0.0 released") from being mistaken for a list marker.
+    const numbered = /^\d{1,2}[.)]\s+(.*)$/.exec(line);
+    if (numbered) {
+      pushItem('ol', numbered[1]);
+      continue;
+    }
+
+    // continuation of the previous list item (hard-wrapped source)
     if (list && /^\s{2,}\S/.test(raw)) {
-      list[list.length - 1] += ` ${line.trim()}`;
+      list.items[list.items.length - 1] += ` ${line.trim()}`;
       continue;
     }
 
@@ -111,13 +126,14 @@ export default function Markdown({ source }) {
           const Tag = block.level === 1 ? 'h1' : 'h2';
           return <Tag key={i}>{block.text}</Tag>;
         }
-        if (block.type === 'ul') {
+        if (block.type === 'ul' || block.type === 'ol') {
+          const Tag = block.type;
           return (
-            <ul key={i}>
+            <Tag key={i} className={block.type === 'ol' ? 'md-steps' : undefined}>
               {block.items.map((item, j) => (
                 <li key={j}>{inline(item, `${i}-${j}`)}</li>
               ))}
-            </ul>
+            </Tag>
           );
         }
         // "**Effective 1 August 2026**" gets the emerald treatment
