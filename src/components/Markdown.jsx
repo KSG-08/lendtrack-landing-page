@@ -110,14 +110,6 @@ function parse(md) {
     list.items.push(text);
   };
 
-  /** Start (or continue) a list of the given type, closing any other kind. */
-  const pushItem = (type, text) => {
-    flushParagraph();
-    if (list && list.type !== type) flushList();
-    list = list || { type, items: [] };
-    list.items.push(text);
-  };
-
   for (const raw of md.split('\n')) {
     const line = raw.trimEnd();
 
