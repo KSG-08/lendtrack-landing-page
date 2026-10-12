@@ -1058,7 +1058,12 @@ input {
   padding-bottom: 40px;
 }
 .pricing .section-head {
-  max-width: 620px;
+  max-width: 820px;
+}
+/* Keep "Free to download. Everything unlocked." on a single line. */
+.pricing .section-head h2 {
+  font-size: clamp(16px, 4.2vw, 38px);
+  white-space: nowrap;
 }
 .price-card {
   position: relative;
@@ -1070,10 +1075,13 @@ input {
   padding: 42px 38px;
   box-shadow: 0 24px 60px rgba(10, 111, 77, 0.3);
 }
+.price-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
 .price-card__badge {
-  position: absolute;
-  top: 24px;
-  right: 26px;
   padding: 6px 13px;
   border-radius: 999px;
   background: rgba(52, 199, 149, 0.2);
@@ -1482,6 +1490,62 @@ input {
 .md strong {
   color: var(--ink);
   font-weight: 700;
+}
+.md em {
+  font-style: italic;
+}
+.md h3 {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: var(--ink);
+  margin: 20px 0 10px;
+}
+.md hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 28px 0 4px;
+}
+/* label blocks ("Service: …" / "Operator: …") keep one line each */
+.md p.md-lines span {
+  display: block;
+}
+/* tables — scroll sideways on narrow screens rather than squashing */
+.md-table {
+  overflow-x: auto;
+  margin: 4px 0 20px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.md-table table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.md-table th {
+  text-align: left;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--bg);
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.md-table td {
+  vertical-align: top;
+  padding: 12px 14px;
+  color: var(--text-2);
+  font-weight: 500;
+}
+.md-table tr + tr td {
+  border-top: 1px solid var(--border);
+}
+.md-table td:first-child {
+  white-space: nowrap;
 }
 /* numbered steps (e.g. the account-deletion walkthrough) */
 .md ol.md-steps {

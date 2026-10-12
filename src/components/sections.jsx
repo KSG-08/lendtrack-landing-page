@@ -49,7 +49,7 @@ export function Hero() {
       <div className="hero__copy">
         <div className="pill">
           <span className="pill__dot" />
-          <span>Coming soon to iOS &amp; Android</span>
+          <span>Early access on Android · iOS upcoming</span>
         </div>
 
         <h1>
@@ -64,27 +64,28 @@ export function Hero() {
           late.
         </p>
 
-        {/* Not links yet — the app isn't listed, so these are deliberately
-            non-interactive. Swap each <div> for an <a href="…"> pointing at the
-            real listing once the stores go live. */}
+        {/* Not links yet — Google Play is in early access (no public listing)
+            and iOS isn't planned yet, so these are deliberately non-interactive.
+            Swap the Google Play <div> for an <a href="…"> pointing at the real
+            listing once it's public. */}
         <div className="hero__ctas">
           <div className="store-badge store-badge--soon">
             <AppleGlyph />
             <span className="store-badge__label">
-              <small>Coming soon on the</small>
+              <small>iOS · Upcoming on the</small>
               <strong>App Store</strong>
             </span>
           </div>
           <div className="store-badge store-badge--soon">
             <PlayGlyph />
             <span className="store-badge__label">
-              <small>Coming soon on</small>
+              <small>Early access on</small>
               <strong>Google Play</strong>
             </span>
           </div>
         </div>
 
-        <p className="hero__micro">$1 one-time · Works offline · No ads, ever</p>
+        <p className="hero__micro">Free to download · Works offline · No ads, ever</p>
       </div>
 
       <div className="hero__art">
@@ -217,22 +218,22 @@ export function Pricing() {
     <section className="shell shell--narrow pricing" id="pricing" aria-labelledby="pricing-heading">
       <div className="section-head">
         <span className="eyebrow">Pricing</span>
-        <h2 id="pricing-heading">One price. Everything unlocked.</h2>
+        <h2 id="pricing-heading">Free to download. Everything unlocked.</h2>
         <p>
-          LendTrack is a single one-time purchase — pay once and it's yours for good. No
-          subscriptions, no tiers, no ads.
+          LendTrack is free on Google Play — no purchase, no subscriptions, no tiers, no ads.
         </p>
       </div>
 
       <div className="price-card">
-        <div className="price-card__badge">ONE-TIME</div>
-        <div className="price-card__kicker">Full app</div>
+        <div className="price-card__head">
+          <div className="price-card__kicker">Full app</div>
+          <div className="price-card__badge">FREE</div>
+        </div>
         <div className="price-card__figure">
-          <b>$1</b>
-          <span>once · forever</span>
+          <b>Free</b>
         </div>
         <p className="price-card__note">
-          A single in-app purchase unlocks everything. Pay once, no renewals.
+          Every feature is included from the moment you install. Nothing to unlock.
         </p>
         <ul className="price-card__list">
           {PERKS.map((perk) => (
@@ -293,7 +294,7 @@ export function Footer() {
 
         <div className="footer__bottom">
           <span>© 2026 LendTrack. Made for people who lend.</span>
-          <span>Not yet published · Coming soon</span>
+          <span>Early access on Android · iOS upcoming</span>
         </div>
       </div>
     </footer>

@@ -17,18 +17,18 @@ const STEPS = [
   },
   {
     state: 'current',
-    label: 'Beta testing',
-    caption: "Polishing the last details on real devices.",
+    label: 'Early access',
+    caption: 'A small group of testers is trying it on Google Play while we polish the details.',
   },
   {
     state: 'upcoming',
     label: 'Store review',
-    caption: 'Apple and Google give it the once-over.',
+    caption: 'Google reviews it for public release.',
   },
   {
     state: 'upcoming',
     label: 'Launch day',
-    caption: 'Live on iOS and Android — $1, one time.',
+    caption: 'Free on Google Play. iOS is still upcoming.',
   },
 ];
 
@@ -47,8 +47,8 @@ export default function LaunchStatus() {
         <div className="cta__inner">
           <h2 id="launch-heading">Almost ready to lend smarter</h2>
           <p>
-            LendTrack isn't out just yet. Here's exactly where it stands on the way to the App Store
-            and Google Play.
+            LendTrack is free, and early access is open to a small group on Google Play. Here's exactly where
+            it stands on the way to a public release.
           </p>
 
           <ol className="roadmap">
