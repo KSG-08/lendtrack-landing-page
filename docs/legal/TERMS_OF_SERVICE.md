@@ -157,7 +157,7 @@ These Terms and any dispute arising from them are governed by the laws of **the 
 Before starting any formal proceeding, you agree to contact us at the address in Section 11 and attempt in good faith to resolve the dispute informally for at least **30 days** after written notice describing the claim.
 
 ### 9.3 Binding arbitration
-If the dispute is not resolved informally, it will be finally resolved by binding arbitration administered by **Mauritius International Arbitration Centre (MIAC) under its administered arbitration rules** before a single arbitrator. The seat and venue of arbitration will be **Port Louis, Mauritius**, and proceedings will be conducted in **English**. Judgment on the award may be entered in any court ### of competent jurisdictio
+If the dispute is not resolved informally, it will be finally resolved by binding arbitration administered by **Mauritius International Arbitration Centre (MIAC) under its administered arbitration rules** before a single arbitrator. The seat and venue of arbitration will be **Port Louis, Mauritius**, and proceedings will be conducted in **English**. Judgment on the award may be entered in any court of competent jurisdiction.
 
 ### 9.4 Exceptions
 Either party may (a) bring an eligible claim in small-claims court, and (b) seek injunctive or equitable relief in court to protect intellectual property or confidential information.
